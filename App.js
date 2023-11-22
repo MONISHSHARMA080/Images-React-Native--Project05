@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { PaperProvider, useTheme, Text, Button, Provider, DefaultTheme, DarkTheme, 
         Drawer, Switch, Appbar, Divider  } from 'react-native-paper';
 import { SafeAreaView, View, StyleSheet, Alert } from 'react-native';
-// import { darkTheme }  from './components/ThemeChangeSlider';
+import Images from './components/Images';
 
 export default function Main() {
 
@@ -10,8 +10,9 @@ export default function Main() {
   const [darkTheme, setdarkTheme ] = useState(theme.dark=true )// bool
   const [active, setActive] = useState('');
   const [draweractive, setDrawerActive] = useState('');
+  
 
- 
+  
 
   return (
       <PaperProvider>      
@@ -31,7 +32,8 @@ export default function Main() {
     </Drawer.Section>
     ) : null}  
 
-        <View style={[styles.container,]} className={darkTheme ? " bg-slate-900  ": "bg-red-100"  } >
+        <View style={styles.container}   className={darkTheme ? " bg-slate-600  ": "bg-red-100"  } >
+          <Images className="h-32" />
         </View>
       </PaperProvider>
   );
@@ -42,5 +44,5 @@ const styles = StyleSheet.create({
       flex: 1,
       alignItems: 'center',
       justifyContent: 'center',
-  }
+  },
 })
