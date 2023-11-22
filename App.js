@@ -1,22 +1,37 @@
 import { useEffect, useState } from 'react';
-import { PaperProvider, useTheme, Text, Button, Provider, DefaultTheme, DarkTheme  } from 'react-native-paper';
+import { PaperProvider, useTheme, Text, Button, Provider, DefaultTheme, DarkTheme, 
+        Drawer, Switch, Appbar, Divider  } from 'react-native-paper';
 import { SafeAreaView, View, StyleSheet, Alert } from 'react-native';
+// import { darkTheme }  from './components/ThemeChangeSlider';
 
 export default function Main() {
 
   const theme = useTheme();
-  const [darkTheme, setdarkTheme ] = useState(theme.dark)// bool
-  
+  const [darkTheme, setdarkTheme ] = useState(theme.dark=true )// bool
+  const [active, setActive] = useState('');
+  const [draweractive, setDrawerActive] = useState('');
+
  
 
   return (
-      <PaperProvider>
-        <View style={[styles.container,]} className={darkTheme ? " bg-slate-900  ": "bg-green-400"  } >
-        <Button mode="elevated" className={darkTheme ? "": "bg-green-800" }  onPress={() =>{
-          setdarkTheme(darkTheme ? false : true) ;
-        }}>
-            <Text style={darkTheme ? {} : {color:"#FFFFFF"} } >change theme from {darkTheme} </Text>
-          </Button>
+      <PaperProvider>      
+
+  <Appbar.Header className={darkTheme ? " bg-slate-500  ": "bg-red-300"  } >
+    <Appbar.Action icon="menu" onPress={() => {setDrawerActive(!draweractive);setActive("")}} />
+  </Appbar.Header>
+
+  {draweractive ? (<Drawer.Section className={darkTheme ? "bg-slate-500  " : "bg-red-300"  }  >
+      <Drawer.Item
+        label="Change theme"
+        icon="theme-light-dark"
+        active={active === 'first'}
+        onPress={() => {setActive('first');setdarkTheme(darkTheme ? false : true)}}
+        style={darkTheme ? "bg-slate-500  " : "bg-green-600"  }
+      />
+    </Drawer.Section>
+    ) : null}  
+
+        <View style={[styles.container,]} className={darkTheme ? " bg-slate-900  ": "bg-red-100"  } >
         </View>
       </PaperProvider>
   );
