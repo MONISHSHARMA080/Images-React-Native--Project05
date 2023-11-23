@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, Image, StyleSheet, TouchableOpacity, Pressable } from 'react-native';
+import { View, Text, Image, StyleSheet, Vibration, } from 'react-native';
 import { Button } from 'react-native-paper';
 import Dice1 from '../assets/One.png';
 import Dice2 from '../assets/Two.png';
@@ -29,7 +29,10 @@ export default function Images() {
 
   return (<>
       <Dice imageUrl={diceImages[diceImageIndex]} />
-      <Button mode="elevated" className="bg-gray-300" onPress={rollTheDice}   >Roll the dice</Button>
+      <Button mode="elevated" className=" bg-purple-100 m-11 "  
+      onPress={()=>{rollTheDice();Vibration.vibrate(58) }}>
+        Roll the dice
+      </Button>
       </>
   );
 }
